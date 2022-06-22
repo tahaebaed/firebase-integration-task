@@ -2,17 +2,21 @@ import React, { useState } from 'react'
 import Btn from './Btn'
 import Input from './Input'
 
-const Form = ({ handleSubmit }) => {
+const Form = ({ handleSubmit, user, children, labelBtn }) => {
   const [nameUpdateQuery, setNameUpdateQuery] = useState('')
   const [ageUpdateQuery, setAgeUpdateQuery] = useState('')
   return (
     <form
-      onSubmit={e => {
-        e.preventDefault()
-        handleSubmit(nameUpdateQuery, ageUpdateQuery)
-      }}
+      onSubmit={e =>
+        handleSubmit({
+          event: e,
+          user,
+          nameQuery: nameUpdateQuery,
+          ageQuery: ageUpdateQuery,
+        })
+      }
     >
-      <p>update form</p>
+      <p>{children}</p>
       <Input
         type='text'
         value={nameUpdateQuery}
@@ -25,7 +29,7 @@ const Form = ({ handleSubmit }) => {
         handleChange={e => setAgeUpdateQuery(e.target.value)}
         placeHolder='please enter age'
       />
-      <Btn type='submit'>update User</Btn>
+      <Btn type='submit'>{labelBtn}</Btn>
     </form>
   )
 }
