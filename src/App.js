@@ -68,7 +68,7 @@ const App = () => {
       <h2>List of Users</h2>
 
       {userList.map(user => (
-        <React.Fragment key={Math.random()}>
+        <React.Fragment key={user.id}>
           <p>
             {user.info.Name} {user.info.Age}
           </p>
